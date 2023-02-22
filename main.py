@@ -1,1 +1,2 @@
-print("101")
+print("000")
+print("kfkfkf")
