@@ -2,20 +2,25 @@ class Player:
     """
     Это класс игрок
     """
-    def __init__(self, name: str, inventory: list, carma=0, pr=0):
+    def __init__(self, name: str, inventory=[""], carma=0, pr=0):
         self.name = name                                    # Имя
         self.inventory = inventory                          # Инвентарь
         self.carma = carma                                  # Карма(удача)
         self.progress = pr
 
-    def status(self):
-        print(f"Имя:{self.name}\nИнвентарь:{self.inventory}\nКарма:{self.carma}\n")
+    def printIn(self): # Позволяет удобно сохранять инвентарь
+        i = " ".join(self.inventory)
+        return str(i)
+    def status(self): # Выводит информацию о игроке
+        print(f"Имя:{self.name}\nИнвентарь:{self.inventory}\nКарма:{self.carma}\nПрогресс:{self.progress}")
 
     def getCarma(self): # Добавляет единицу к карме
+        self.carma = int(self.carma)
         self.carma += 1
         return self.carma
 
     def takeCarm(self): # Отнимает единицу от кармы
+        self.carma = int(self.carma)
         self.carma -= 1
         return self.carma
 
@@ -32,7 +37,7 @@ class Saving:
     """
     Класс для сохранения данных в текстовый фаил(попытка сделать сохранение)
     """
-    def __init__(self, filename='saving'):
+    def __init__(self, filename="data/saving"):
         self.db = filename # Имя файла
         with open(filename, 'a', encoding='UTF-8') as f: # защита от выстрела в ногу
             f.write('')
@@ -50,5 +55,3 @@ class Saving:
     def clearing(self): # Перезаписывает фаил т.е. очищает полностью
         with open(self.db, 'w', encoding='UTF-8') as f:
             f.write('')
-l = Saving()
-print(l.output())
